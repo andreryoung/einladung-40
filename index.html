@@ -93,7 +93,7 @@
     user-select: none; -webkit-user-select: none;
     transition: color 0.2s ease;
   }
-  .ltr:hover { color: var(--accent); }
+  .ltr:hover, .ltr.flash { color: var(--accent); }
   .ltr .g { display: inline-block; font-style: normal; transform: scaleX(var(--cx)); animation: turn var(--td, 12s) ease-in-out var(--tdl, 0s) infinite; }
   @keyframes turn { 0%, 82% { transform: rotate(0deg) scaleX(var(--cx)); } 93%, 100% { transform: rotate(calc(360deg * var(--tdir, 1))) scaleX(var(--cx)); } }
   .beat .ltr { animation: bounce var(--beat) ease-in-out var(--bdl, 0s) infinite alternate; }
@@ -198,6 +198,8 @@
     transition: background 0.15s ease, color 0.15s ease, transform 0.1s ease;
   }
   .music-btn:active { transform: scale(0.98); }
+  .music-btn.pulse { animation: pulse 1.6s ease-in-out infinite; }
+  @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.07); } }
   .music-btn.on { background: var(--ink); border-color: var(--ink); color: var(--bg); }
   .music-btn .bars { display: inline-flex; align-items: flex-end; gap: 2px; height: 14px; }
   .music-btn .bars i { display: block; width: 3px; height: 4px; background: currentColor; border-radius: 2px; }
@@ -207,7 +209,7 @@
   @keyframes bar { from { height: 4px; } to { height: 14px; } }
 
   @media (prefers-reduced-motion: reduce) {
-    .ltr, .ltr .g, .beat .ltr, .enter .ltr, .music-btn.on .bars i, .ltr.spin { animation: none; }
+    .ltr, .ltr .g, .beat .ltr, .enter .ltr, .music-btn.on .bars i, .ltr.spin, .music-btn.pulse { animation: none; }
   }
 </style>
 </head>
@@ -380,8 +382,10 @@ const CONFIG = {
 
   // Musik: lokale Datei für den Musik-Button (mp3 oder m4a, GEMA-frei, unter 5 MB). Leer = kein Button.
   // musik.mp3 = "House" von AtlasAudio, Pixabay Content License (kostenlos, ohne Namensnennung), Julians Wahl 26.09.2026.
-  // Das Tempo in bpm steuert das Hüpfen der Buchstaben. startOnFirstTap: true startet die Musik beim ersten Tipp.
-  music: { src: "musik.mp3", bpm: 110, volume: 0.6, startOnFirstTap: false },
+  // Das Tempo in bpm steuert Hüpfen und Farbwechsel der Buchstaben. autoplay: true versucht den Start sofort beim
+  // Laden (klappt nur, wenn der Browser es erlaubt), startOnFirstTap: true startet spätestens beim ersten Tipp
+  // irgendwo auf der Seite. flash: wie viele Buchstaben je Schlag auf Schwarz springen (0 = aus).
+  music: { src: "musik.mp3", bpm: 110, volume: 0.6, autoplay: true, startOnFirstTap: true, flash: 3 },
 
   // Kontakt (steht im Fußbereich)
   hostPhone: "+49 151 41208619",
@@ -645,26 +649,54 @@ const CONFIG = {
   };
   const setMusicUI = (on) => {
     musicBtn.classList.toggle("on", on); musicBtn.setAttribute("aria-pressed", String(on));
+    musicBtn.classList.toggle("pulse", !on && !reduced);
     musicLabel.textContent = on ? "Musik aus" : "Musik an";
     document.body.classList.toggle("beat", on && !reduced);
   };
+  // Farbwechsel im Takt: je Schlag springen zufällige Buchstaben für einen oder zwei Schläge auf Schwarz
+  let beatTimer = null, lastBeat = -1;
+  const stackLetters = () => document.querySelectorAll("#stack .ltr");
+  function beatLoop() {
+    if (!musicPlaying || audio.paused) return;
+    const b = Math.floor(audio.currentTime * bpm / 60);
+    if (b !== lastBeat) {
+      lastBeat = b;
+      const ls = stackLetters(), n = ls.length, k = Math.max(0, Math.round((music.flash == null ? 3 : music.flash) * (0.4 + Math.random() * 0.8)));
+      for (let i = 0; i < k && n; i++) {
+        const el = ls[Math.floor(Math.random() * n)];
+        el.classList.add("flash");
+        const hold = (60 / bpm) * 1000 * (Math.random() < 0.25 ? 2 : 1);
+        setTimeout(() => el.classList.remove("flash"), hold - 40);
+      }
+    }
+  }
   async function musicOn() {
     if (!audio.getAttribute("src")) audio.src = music.src;
     audio.volume = 0;
-    try { await audio.play(); } catch (e) { musicLabel.textContent = "Tippen für Musik"; return; }
+    try { await audio.play(); } catch (e) { musicLabel.textContent = "Tippen für Musik"; return false; }
     musicPlaying = true; setMusicUI(true); fadeTo(music.volume == null ? 0.5 : music.volume, 1500);
+    lastBeat = -1; clearInterval(beatTimer); beatTimer = setInterval(beatLoop, 40);
+    return true;
   }
-  function musicOff() { musicPlaying = false; setMusicUI(false); fadeTo(0, 600, () => audio.pause()); }
+  function musicOff() {
+    musicPlaying = false; setMusicUI(false); fadeTo(0, 600, () => audio.pause());
+    clearInterval(beatTimer); stackLetters().forEach((el) => el.classList.remove("flash"));
+  }
   if (music.src) {
-    musicBtn.hidden = false;
+    musicBtn.hidden = false; setMusicUI(false);
     let lastToggle = 0;
     musicBtn.addEventListener("click", () => {
       const now = Date.now(); if (now - lastToggle < 400) return; lastToggle = now;   // Doppel-Klicks abfangen
       musicPlaying ? musicOff() : musicOn();
     });
-    if (music.startOnFirstTap) {
-      document.addEventListener("pointerdown", (ev) => { if (!musicBtn.contains(ev.target) && !musicPlaying) musicOn(); }, { once: true });
-    }
+    const armFirstTap = () => {
+      const start = (ev) => { if (musicPlaying || musicBtn.contains(ev.target)) return; musicOn(); };
+      document.addEventListener("pointerdown", start, { once: true });
+      document.addEventListener("keydown", start, { once: true });
+    };
+    if (music.startOnFirstTap) armFirstTap();
+    // Autostart: klappt nur, wenn der Browser es ohne Tipp erlaubt (selten). Sonst bleibt der erste Tipp.
+    if (music.autoplay) musicOn();
   }
 
   // Konfetti in Weiß und Schwarz
