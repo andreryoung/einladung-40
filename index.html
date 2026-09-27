@@ -192,6 +192,9 @@
   }
   .seg input:checked + label { background: var(--accent); border-color: var(--accent); color: var(--white); }
   .seg input:focus-visible + label { outline: 3px solid var(--ink); outline-offset: 3px; }
+  .counts { display: flex; flex-wrap: wrap; gap: 14px 28px; }
+  .count { display: grid; gap: 6px; }
+  .sub-lbl { font-size: 14px; color: var(--muted); }
   .stepper { display: inline-grid; grid-template-columns: 52px 76px 52px; align-items: stretch; border: 1px solid var(--field-line); border-radius: 12px; overflow: hidden; background: var(--field); }
   .stepper button { font: inherit; font-size: 24px; font-weight: 700; color: var(--ink); background: transparent; border: 0; cursor: pointer; }
   .stepper button:hover { background: var(--accent); }
@@ -321,14 +324,27 @@
           </div>
         </div>
 
-        <div class="field" id="personsField">
-          <label class="lbl" for="personsOut">Wie viele Personen seid ihr?</label>
-          <div class="stepper" aria-live="polite">
-            <button type="button" id="minus" aria-label="Eine Person weniger">&minus;</button>
-            <output id="personsOut" for="minus plus">2</output>
-            <button type="button" id="plus" aria-label="Eine Person mehr">+</button>
+        <div class="field" id="countField">
+          <span class="lbl">Wie viele seid ihr?</span>
+          <div class="counts">
+            <div class="count">
+              <span class="sub-lbl" id="adultsLbl">Erwachsene</span>
+              <div class="stepper" aria-live="polite">
+                <button type="button" id="adultsMinus" aria-label="Ein Erwachsener weniger">&minus;</button>
+                <output id="adultsOut" aria-labelledby="adultsLbl">2</output>
+                <button type="button" id="adultsPlus" aria-label="Ein Erwachsener mehr">+</button>
+              </div>
+            </div>
+            <div class="count">
+              <span class="sub-lbl" id="kidsLbl">Kinder unter 18</span>
+              <div class="stepper" aria-live="polite">
+                <button type="button" id="kidsMinus" aria-label="Ein Kind weniger">&minus;</button>
+                <output id="kidsOut" aria-labelledby="kidsLbl">0</output>
+                <button type="button" id="kidsPlus" aria-label="Ein Kind mehr">+</button>
+              </div>
+            </div>
           </div>
-          <span class="hint" id="personsHint">Dich eingerechnet, Kinder zählen mit.</span>
+          <span class="hint" id="countHint">Dich eingerechnet. Eine Antwort je Familie reicht.</span>
         </div>
 
         <div class="field">
@@ -384,7 +400,7 @@ const CONFIG = {
   // Schwarzer Sticker schräg über dem Stapel, zwei Zeilen. Leer = kein Sticker (Julian, 26.09.).
   sticker: { a: "", b: "" },
   tagline: "Vierzig Jahre. Eine Nacht.",
-  intro: "Ich freue mich, wenn du dabei bist. Sag mir kurz, ob du kommst und mit wie vielen Personen.",
+  intro: "Ich freue mich, wenn ihr dabei seid. Sag mir kurz, ob ihr kommt und wie viele Erwachsene und Kinder ihr seid. Eine Antwort je Familie reicht.",
   // Optionales Foto als runder Rot-Duotone über der Überschrift (Datei neben index.html, z. B. "julian.jpg").
   heroImage: "",
 
@@ -404,8 +420,10 @@ const CONFIG = {
 
   // Rückmeldung
   rsvpDeadline: "2027-06-26",
-  maxPersons: 6,
-  defaultPersons: 2,
+  maxAdults: 6,           // Obergrenze im Zähler Erwachsene
+  defaultAdults: 2,
+  maxKids: 6,             // Obergrenze im Zähler Kinder unter 18
+  defaultKids: 0,
   // URL der Apps-Script-Web-App (endet auf /exec). Leer = Vorschau ohne Speichern.
   rsvpEndpoint: "https://script.google.com/macros/s/AKfycbyLv0rZT7an8vX2WE38sL5f2TCNdj8lPxLMTpcMP2HTvC0lvoQLvLGYb8x6-WzEREga/exec",
 
@@ -588,14 +606,21 @@ const CONFIG = {
 
   // Formular
   const form = $("form"), done = $("done"), status = $("status");
-  const nameIn = $("name"), msgIn = $("message"), out = $("personsOut");
-  const personsField = $("personsField");
-  let persons = Math.min(CONFIG.maxPersons, Math.max(1, CONFIG.defaultPersons || 1));
-  const render = () => { out.textContent = String(persons); $("minus").disabled = persons <= 1; $("plus").disabled = persons >= CONFIG.maxPersons; };
-  $("minus").addEventListener("click", () => { persons = Math.max(1, persons - 1); render(); });
-  $("plus").addEventListener("click", () => { persons = Math.min(CONFIG.maxPersons, persons + 1); render(); });
+  const nameIn = $("name"), msgIn = $("message");
+  const countField = $("countField");
+  const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, Number(v) || 0));
+  let adults = clamp(CONFIG.defaultAdults || 1, 1, CONFIG.maxAdults), kids = clamp(CONFIG.defaultKids || 0, 0, CONFIG.maxKids);
+  const render = () => {
+    $("adultsOut").textContent = String(adults); $("kidsOut").textContent = String(kids);
+    $("adultsMinus").disabled = adults <= 1; $("adultsPlus").disabled = adults >= CONFIG.maxAdults;
+    $("kidsMinus").disabled = kids <= 0; $("kidsPlus").disabled = kids >= CONFIG.maxKids;
+  };
+  $("adultsMinus").addEventListener("click", () => { adults = clamp(adults - 1, 1, CONFIG.maxAdults); render(); });
+  $("adultsPlus").addEventListener("click", () => { adults = clamp(adults + 1, 1, CONFIG.maxAdults); render(); });
+  $("kidsMinus").addEventListener("click", () => { kids = clamp(kids - 1, 0, CONFIG.maxKids); render(); });
+  $("kidsPlus").addEventListener("click", () => { kids = clamp(kids + 1, 0, CONFIG.maxKids); render(); });
   const attending = () => $("att-yes").checked;
-  const toggle = () => { personsField.hidden = !attending(); };
+  const toggle = () => { countField.hidden = !attending(); };
   $("att-yes").addEventListener("change", toggle);
   $("att-no").addEventListener("change", toggle);
   render(); toggle();
@@ -611,7 +636,10 @@ const CONFIG = {
     dl.setAttribute("aria-label", p.attending ? "Yes" : "Schade");
     if (p.attending) {
       $("doneText").textContent = "Danke, " + p.name + "! Wir sehen uns am " + fmtShort.format(start) + ".";
-      $("doneSub").textContent = "Ich habe euch mit " + p.persons + (p.persons === 1 ? " Person" : " Personen") + " notiert.";
+      const a = Number(p.adults) || 0, k = Number(p.kids) || 0;
+      const parts = [a === 1 ? "einem Erwachsenen" : a + " Erwachsenen"];
+      if (k > 0) parts.push(k === 1 ? "einem Kind" : k + " Kindern");
+      $("doneSub").textContent = (a + k === 1) ? "Ich habe dich als eine Person notiert." : "Ich habe euch mit " + parts.join(" und ") + " notiert.";
     } else {
       $("doneText").textContent = "Danke für deine Nachricht, " + p.name + ".";
       $("doneSub").textContent = "Wir holen das nach.";
@@ -620,7 +648,7 @@ const CONFIG = {
   const saved = load();
   if (saved && saved.name) {
     nameIn.value = saved.name; msgIn.value = saved.message || "";
-    if (saved.attending) { $("att-yes").checked = true; persons = Math.min(CONFIG.maxPersons, Math.max(1, saved.persons || 1)); }
+    if (saved.attending) { $("att-yes").checked = true; adults = clamp(saved.adults || saved.persons || 1, 1, CONFIG.maxAdults); kids = clamp(saved.kids || 0, 0, CONFIG.maxKids); }
     else { $("att-no").checked = true; }
     render(); toggle(); showDone(saved);
   }
@@ -645,7 +673,8 @@ const CONFIG = {
     const name = nameIn.value.trim();
     if (!name) { status.className = "status err"; status.textContent = "Bitte trag deinen Namen ein, damit ich weiß, wer antwortet."; nameIn.focus(); return; }
     const payload = {
-      name, attending: attending(), persons: attending() ? persons : 0,
+      name, attending: attending(), adults: attending() ? adults : 0, kids: attending() ? kids : 0,
+      persons: attending() ? adults + kids : 0,
       message: msgIn.value.trim(), website: $("website").value,
       sentAt: new Date().toISOString(), page: location.href
     };
