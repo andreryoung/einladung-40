@@ -1,0 +1,703 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Julian wird 40</title>
+<meta name="description" content="Samstag, 24. Juli 2027, ab 16 Uhr, Wilscheider Hof, Beckingen-Reimsbach. Sag mir, ob du kommst.">
+<meta name="theme-color" content="#E02419">
+<meta name="robots" content="noindex, nofollow">
+<!-- Vorschau in WhatsApp, iMessage und Co. Die Bild-Adresse muss absolut sein (Hosting: GitHub Pages, seit 27.09.2026). -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Julian wird 40">
+<meta property="og:description" content="Samstag, 24. Juli 2027, ab 16 Uhr, Wilscheider Hof, Beckingen-Reimsbach. Sag mir, ob du kommst.">
+<meta property="og:image" content="https://andreryoung.github.io/einladung-40/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="de_DE">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%23E02419'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Georgia,serif' font-weight='700' font-size='30' fill='white'%3E40%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;900&display=swap">
+<style>
+  :root {
+    --bg: #E02419;
+    --bg-light: #FF5A4E;
+    --ink: #FFFFFF;
+    --accent: #0A0A0A;
+    --muted: rgba(255, 255, 255, 0.82);
+    --card: rgba(0, 0, 0, 0.2);
+    --line: rgba(255, 255, 255, 0.3);
+    --field: rgba(0, 0, 0, 0.26);
+    --field-line: rgba(255, 255, 255, 0.45);
+    --white: #FFFFFF;
+    --display: "Bodoni Moda", "Bodoni 72", "Didot", Georgia, serif;
+    --display-weight: 900;
+    --cx: 0.8;
+    --sans: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --beat: 0.49s;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  html, body { margin: 0; overflow-x: clip; }
+  body {
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--ink);
+    background-color: var(--bg);
+    background-image:
+      radial-gradient(120% 60% at 50% -10%, var(--bg-light) 0%, transparent 60%),
+      repeating-linear-gradient(0deg, rgba(0,0,0,0.14) 0 1px, transparent 1px 26px),
+      repeating-linear-gradient(90deg, rgba(0,0,0,0.14) 0 1px, transparent 1px 26px);
+    background-attachment: fixed;
+    padding-inline: 20px;
+    padding-block: 0;
+    min-height: 100%;
+  }
+  a { color: var(--ink); }
+  h1, h2, h3 { text-wrap: balance; margin: 0; }
+  p { margin: 0; }
+
+  /* Filmkorn über allem */
+  .grain { position: fixed; inset: 0; z-index: 3; pointer-events: none; opacity: 0.1;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.7 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+
+  .page { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr); gap: 56px; padding-block: 28px 80px; }
+  .page > * { min-width: 0; }
+
+  .hero { position: relative; text-align: center; display: grid; gap: 14px; justify-items: center; padding-top: clamp(12px, 4vw, 40px); container-type: inline-size; }
+  /* Optionales Foto als roter Duotone-Kreis */
+  .disc {
+    position: relative; width: min(64vw, 300px); aspect-ratio: 1; border-radius: 50%; overflow: hidden;
+    background-color: var(--bg); border: 3px solid var(--ink); margin-bottom: 6px;
+  }
+  .disc img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; filter: grayscale(1) contrast(1.25) brightness(0.95); mix-blend-mode: multiply; }
+
+  .pill { display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; border-radius: 999px; border: 1.5px solid var(--ink); background: transparent; font-weight: 500; font-size: 14px; font-variant-numeric: tabular-nums; }
+  .pill b { color: var(--accent); font-weight: 900; }
+  .eyebrow { letter-spacing: 0.22em; text-transform: uppercase; font-size: 11px; font-weight: 700; background: var(--accent); border-color: var(--accent); }
+
+  .stack { position: relative; width: 100%; display: grid; gap: 0; justify-items: center; text-transform: uppercase; margin-top: 6px; }
+  .line {
+    display: flex; align-items: baseline; justify-content: center; white-space: nowrap;
+    font-family: var(--display); font-weight: var(--display-weight); font-variation-settings: "opsz" 96;
+    font-size: calc(min(calc(100cqw * var(--k, 0.25)), var(--max, 220px)) * var(--fit, 1)); line-height: 0.84; letter-spacing: -0.01em;
+  }
+  .ltr {
+    display: inline-block; color: var(--fill, var(--ink));
+    font-size: calc(1em * var(--sz, 1));
+    margin-inline: calc(-0.5 * (1 - var(--cx)) * 0.6em);
+    transform: rotate(var(--r, 0deg));
+    animation: wobble var(--d, 3s) ease-in-out var(--dl, 0s) infinite alternate;
+    cursor: pointer; user-select: none; -webkit-user-select: none;
+    transition: color 0.2s ease;
+  }
+  .ltr:hover { color: var(--accent); }
+  .ltr .g { display: inline-block; font-style: normal; transform: scaleX(var(--cx)); animation: turn var(--td, 9s) ease-in-out var(--tdl, 0s) infinite; }
+  @keyframes turn { 0%, 82% { transform: rotate(0deg) scaleX(var(--cx)); } 93%, 100% { transform: rotate(calc(360deg * var(--tdir, 1))) scaleX(var(--cx)); } }
+  @keyframes wobble { from { transform: rotate(calc(var(--r, 0deg) - 2deg)) translateY(0); } to { transform: rotate(calc(var(--r, 0deg) + 2deg)) translateY(-0.03em); } }
+  .beat .ltr { animation: bounce var(--beat) ease-in-out var(--bdl, 0s) infinite alternate; }
+  @keyframes bounce { from { transform: rotate(var(--r, 0deg)) translateY(0) scale(1); } to { transform: rotate(calc(var(--r, 0deg) * -1)) translateY(-0.1em) scale(1.04); } }
+  .ltr.spin, .beat .ltr.spin { animation: spin 0.9s cubic-bezier(0.3, 1.3, 0.5, 1) 1; }
+  @keyframes spin { to { transform: rotate(calc(var(--r, 0deg) + 360deg)); } }
+  .enter .ltr { animation: pop 0.5s cubic-bezier(0.2, 1.6, 0.4, 1) var(--edl, 0s) 1 backwards, wobble var(--d, 3s) ease-in-out calc(var(--edl, 0s) + 0.5s) infinite alternate; }
+  @keyframes pop { from { transform: scale(0) rotate(-20deg); } to { transform: scale(1) rotate(var(--r, 0deg)); } }
+
+  .sticker {
+    position: absolute; z-index: 3; left: 50%; top: var(--sticker-top, 50%); translate: -50% -50%; rotate: -9deg;
+    background: var(--accent); color: var(--white); padding: 0.35em 0.8em; text-align: center;
+    font-weight: 900; text-transform: uppercase; font-size: clamp(13px, 3.4vw, 19px); line-height: 1.05; letter-spacing: 0.02em;
+    box-shadow: 0 6px 30px rgba(0,0,0,0.35); pointer-events: none;
+  }
+  .sticker small { display: block; font-weight: 500; text-transform: none; font-size: 0.85em; letter-spacing: 0; }
+
+  .tagline { font-weight: 700; font-size: clamp(15px, 3.6vw, 18px); margin-top: 10px; }
+  .rule { width: min(320px, 70%); height: 3px; background: var(--ink); }
+  .dateBig { font-weight: 900; text-transform: uppercase; font-size: clamp(22px, 6.4vw, 36px); line-height: 1.08; letter-spacing: 0.01em; }
+  .venueLine { font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; }
+  .hero .intro { max-width: 36ch; color: var(--muted); font-size: 17px; margin-top: 6px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 8px; }
+
+  .btn {
+    appearance: none; border: 2px solid var(--ink); cursor: pointer; font: inherit; font-weight: 700; font-size: 15px;
+    padding: 12px 22px; border-radius: 999px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+    background: transparent; color: var(--ink); text-transform: uppercase; letter-spacing: 0.04em;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+  }
+  .btn:hover { background: var(--ink); color: var(--bg); }
+  .btn:active { transform: scale(0.98); }
+  .btn-primary { background: var(--accent); border-color: var(--accent); color: var(--white); }
+  .btn-primary:hover { background: var(--ink); border-color: var(--ink); color: var(--accent); }
+  .btn-small { padding: 9px 15px; font-size: 13px; }
+  .btn[disabled] { opacity: 0.6; cursor: progress; }
+  :focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+
+  section > h2 { font-family: var(--display); font-weight: var(--display-weight); font-variation-settings: "opsz" 96; text-transform: uppercase; font-size: clamp(34px, 7vw, 52px); line-height: 1; margin-bottom: 22px; text-align: center; letter-spacing: -0.01em; }
+  .grid { display: grid; gap: 16px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  @media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 22px; display: grid; gap: 10px; align-content: start; }
+  .card h3 { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 700; color: var(--muted); }
+  .card .big { font-weight: 900; text-transform: uppercase; font-size: clamp(20px, 4vw, 24px); line-height: 1.15; }
+  .card .sub { color: var(--muted); }
+  .card .row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+  .schedule { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+  .schedule li { display: grid; grid-template-columns: 58px 1fr; gap: 10px; align-items: baseline; }
+  .schedule time { font-variant-numeric: tabular-nums; font-weight: 700; }
+  .notes { display: grid; gap: 12px; }
+  .notes b { display: block; }
+  .notes span { color: var(--muted); }
+
+  .rsvp .card { padding: 26px; }
+  .deadline { color: var(--muted); margin-bottom: 18px; }
+  .demo { font-size: 14px; font-weight: 600; background: var(--accent); color: var(--white); border-radius: 12px; padding: 10px 14px; margin-bottom: 16px; }
+  form { display: grid; gap: 18px; }
+  .field { display: grid; gap: 8px; }
+  .lbl { font-weight: 700; font-size: 15px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .hint { font-size: 14px; color: var(--muted); font-weight: 400; text-transform: none; letter-spacing: 0; }
+  input[type="text"], textarea {
+    font: inherit; color: var(--ink); background: var(--field); border: 1px solid var(--field-line);
+    border-radius: 12px; padding: 12px 14px; width: 100%;
+  }
+  input[type="text"]:focus, textarea:focus { outline: none; border-color: var(--ink); box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.35); }
+  textarea { min-height: 96px; resize: vertical; }
+  input::placeholder, textarea::placeholder { color: rgba(255, 255, 255, 0.55); }
+  .seg { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .seg input { position: absolute; opacity: 0; pointer-events: none; }
+  .seg label {
+    display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer;
+    padding: 14px 12px; border-radius: 12px; border: 1px solid var(--field-line); background: var(--field); font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; font-size: 14px;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  }
+  .seg input:checked + label { background: var(--accent); border-color: var(--accent); color: var(--white); }
+  .seg input:focus-visible + label { outline: 3px solid var(--ink); outline-offset: 3px; }
+  .stepper { display: inline-grid; grid-template-columns: 52px 76px 52px; align-items: stretch; border: 1px solid var(--field-line); border-radius: 12px; overflow: hidden; background: var(--field); }
+  .stepper button { font: inherit; font-size: 24px; font-weight: 700; color: var(--ink); background: transparent; border: 0; cursor: pointer; }
+  .stepper button:hover { background: var(--accent); }
+  .stepper button[disabled] { color: rgba(255, 255, 255, 0.4); cursor: default; background: transparent; }
+  .stepper output { display: grid; place-items: center; font-family: var(--display); font-weight: var(--display-weight); font-size: 28px; font-variant-numeric: tabular-nums; border-inline: 1px solid var(--field-line); }
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .status { min-height: 1.4em; font-size: 15px; font-weight: 600; }
+  .status.err { color: #FFE1DE; text-decoration: underline; }
+  .done { display: grid; gap: 14px; }
+  .done .line { justify-content: flex-start; font-size: clamp(56px, 14vw, 96px); }
+  .done .big { font-size: clamp(18px, 4vw, 22px); font-weight: 700; line-height: 1.3; }
+
+  footer { text-align: center; color: var(--muted); display: grid; gap: 12px; justify-items: center; border-top: 1px solid var(--line); padding-block: 28px 0; }
+  .phone { display: inline-flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: center; }
+  .phone code { font: inherit; font-weight: 900; color: var(--ink); user-select: all; font-size: 18px; }
+  footer small { font-size: 13px; }
+
+  #confetti { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 5; pointer-events: none; }
+
+  .music-btn {
+    position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 6;
+    display: inline-flex; align-items: center; gap: 9px; padding: 10px 16px; border-radius: 999px;
+    border: 1px solid var(--accent); background: var(--accent); color: var(--white);
+    font: inherit; font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease, transform 0.1s ease;
+  }
+  .music-btn:active { transform: scale(0.98); }
+  .music-btn.on { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+  .music-btn .bars { display: inline-flex; align-items: flex-end; gap: 2px; height: 14px; }
+  .music-btn .bars i { display: block; width: 3px; height: 4px; background: currentColor; border-radius: 2px; }
+  .music-btn.on .bars i { animation: bar var(--beat) ease-in-out infinite alternate; }
+  .music-btn.on .bars i:nth-child(2) { animation-delay: 0.16s; }
+  .music-btn.on .bars i:nth-child(3) { animation-delay: 0.32s; }
+  @keyframes bar { from { height: 4px; } to { height: 14px; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ltr, .ltr .g, .beat .ltr, .enter .ltr, .music-btn.on .bars i, .ltr.spin { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+<canvas id="confetti" aria-hidden="true"></canvas>
+
+<main class="page">
+
+  <header class="hero enter" id="hero">
+    <div class="disc" id="disc" aria-hidden="true" hidden></div>
+    <div class="pill eyebrow" id="eyebrow">Einladung</div>
+    <h1 class="stack" id="stack" aria-label="Julian wird 40">
+      <div class="sticker" id="sticker" hidden><span id="stickerA"></span><small id="stickerB"></small></div>
+    </h1>
+    <p class="tagline" id="tagline"></p>
+    <div class="rule" aria-hidden="true"></div>
+    <div class="dateBig"><div id="dateA"></div><div id="dateB"></div></div>
+    <div class="venueLine" id="venueLine"></div>
+    <p class="intro" id="intro"></p>
+    <div class="pill" id="countdown" hidden></div>
+    <div class="actions">
+      <a class="btn btn-primary" href="#rsvp">Jetzt antworten</a>
+      <a class="btn" href="#details">Alle Infos</a>
+    </div>
+  </header>
+
+  <section id="details" aria-labelledby="h-details">
+    <h2 id="h-details">Wann, wo, was</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Wann</h3>
+        <div class="big" id="whenBig"></div>
+        <div class="sub" id="whenSub"></div>
+        <div class="row">
+          <a class="btn btn-small" id="icsBtn" href="einladung.ics" download="Julian-wird-40.ics">In Kalender speichern</a>
+          <a class="btn btn-small" id="gcalBtn" href="#" target="_blank" rel="noopener">Google Kalender</a>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Wo</h3>
+        <div class="big" id="venueName"></div>
+        <div class="sub" id="venueAddress"></div>
+        <div class="row">
+          <a class="btn btn-small" id="appleMaps" href="#" target="_blank" rel="noopener">Apple Karten</a>
+          <a class="btn btn-small" id="googleMaps" href="#" target="_blank" rel="noopener">Google Maps</a>
+        </div>
+      </div>
+      <div class="card" id="scheduleCard">
+        <h3>Ablauf</h3>
+        <ul class="schedule" id="schedule"></ul>
+      </div>
+      <div class="card" id="notesCard">
+        <h3>Gut zu wissen</h3>
+        <div class="notes" id="notes"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="rsvp" class="rsvp" aria-labelledby="h-rsvp">
+    <h2 id="h-rsvp">Bist du dabei?</h2>
+    <div class="card">
+      <p class="deadline" id="deadline"></p>
+      <div class="demo" id="demoNote" hidden>Vorschau: Antworten werden auf dieser Seite noch nicht gespeichert.</div>
+
+      <form id="form" novalidate>
+        <div class="field">
+          <label class="lbl" for="name">Dein Name</label>
+          <input type="text" id="name" name="name" autocomplete="name" placeholder="Vorname Nachname" required maxlength="120">
+        </div>
+
+        <div class="field">
+          <span class="lbl" id="attLbl">Kommst du?</span>
+          <div class="seg" role="radiogroup" aria-labelledby="attLbl">
+            <input type="radio" name="attending" id="att-yes" value="yes" checked>
+            <label for="att-yes">Ja, ich komme</label>
+            <input type="radio" name="attending" id="att-no" value="no">
+            <label for="att-no">Leider nicht</label>
+          </div>
+        </div>
+
+        <div class="field" id="personsField">
+          <label class="lbl" for="personsOut">Wie viele Personen seid ihr?</label>
+          <div class="stepper" aria-live="polite">
+            <button type="button" id="minus" aria-label="Eine Person weniger">&minus;</button>
+            <output id="personsOut" for="minus plus">2</output>
+            <button type="button" id="plus" aria-label="Eine Person mehr">+</button>
+          </div>
+          <span class="hint" id="personsHint">Dich eingerechnet, Kinder zählen mit.</span>
+        </div>
+
+        <div class="field">
+          <label class="lbl" for="message">Noch etwas? <span class="hint">(optional)</span></label>
+          <textarea id="message" name="message" maxlength="1000" placeholder="Unverträglichkeiten, Übernachtung, ein Gruß"></textarea>
+        </div>
+
+        <div class="hp" aria-hidden="true">
+          <label for="website">Website</label>
+          <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+        </div>
+
+        <div class="actions" style="justify-content:flex-start; margin:0">
+          <button class="btn btn-primary" type="submit" id="submitBtn">Antwort senden</button>
+        </div>
+        <div class="status" id="status" role="status" aria-live="polite"></div>
+      </form>
+
+      <div class="done" id="done" hidden>
+        <div class="line" id="doneLetters" role="img" aria-label="Yes" style="--k:0.3;--max:120px"></div>
+        <div class="big" id="doneText"></div>
+        <p class="sub" id="doneSub"></p>
+        <div class="actions" style="justify-content:flex-start; margin:0">
+          <button class="btn btn-small" type="button" id="editBtn">Antwort ändern</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Fragen? Ruf an oder schreib mir per WhatsApp.</p>
+    <div class="phone"><code id="phone"></code><button class="btn btn-small" type="button" id="copyPhone">Nummer kopieren</button></div>
+    <small>Diese Seite speichert nur deine Antwort. Keine Cookies, keine Werbung.</small>
+  </footer>
+
+</main>
+
+<audio id="music" loop preload="none"></audio>
+<button class="music-btn" id="musicBtn" type="button" hidden aria-pressed="false">
+  <span class="bars" aria-hidden="true"><i></i><i></i><i></i></span><span id="musicLabel">Musik an</span>
+</button>
+
+<script>
+/* =====================================================================
+   HIER ANPASSEN. Alles, was auf der Seite steht, kommt aus diesem Block.
+   Datumsangaben im Format JJJJ-MM-TTThh:mm:ss (lokale Zeit).
+   ===================================================================== */
+const CONFIG = {
+  // Kopf
+  eyebrow: "Einladung",
+  // Jedes Wort wird eine Zeile im Stapel, Großbuchstaben kommen automatisch. Die letzte Zeile wird am größten.
+  headline: "Julian wird 40",
+  // Schwarzer Sticker schräg über dem Stapel, zwei Zeilen. Leer = kein Sticker (Julian, 26.09.).
+  sticker: { a: "", b: "" },
+  tagline: "Vierzig Jahre. Eine Nacht.",
+  intro: "Ich freue mich, wenn du dabei bist. Sag mir kurz, ob du kommst und mit wie vielen Personen.",
+  // Optionales Foto als runder Rot-Duotone über der Überschrift (Datei neben index.html, z. B. "julian.jpg").
+  heroImage: "",
+
+  // Wann
+  start: "2027-07-24T16:00:00",
+  end:   "2027-07-25T02:00:00",
+  timeLabel: "ab 16 Uhr, open end",
+
+  // Wo
+  venueName: "Wilscheider Hof",
+  venueAddress: "Zum Wilscheider Hof, 66701 Beckingen-Reimsbach",
+  venueShort: "Beckingen-Reimsbach",
+
+  // Ablauf und Hinweise: leere Listen blenden die Karten aus
+  schedule: [],
+  notes: [],
+
+  // Rückmeldung
+  rsvpDeadline: "2027-06-26",
+  maxPersons: 6,
+  defaultPersons: 2,
+  // URL der Apps-Script-Web-App (endet auf /exec). Leer = Vorschau ohne Speichern.
+  rsvpEndpoint: "https://script.google.com/macros/s/AKfycbyLv0rZT7an8vX2WE38sL5f2TCNdj8lPxLMTpcMP2HTvC0lvoQLvLGYb8x6-WzEREga/exec",
+
+  // Musik: lokale Datei für den Musik-Button (mp3 oder m4a, GEMA-frei, unter 5 MB). Leer = kein Button.
+  // musik.mp3 = "House" von AtlasAudio, Pixabay Content License (kostenlos, ohne Namensnennung), Julians Wahl 26.09.2026.
+  // Das Tempo in bpm steuert das Hüpfen der Buchstaben. startOnFirstTap: true startet die Musik beim ersten Tipp.
+  music: { src: "musik.mp3", bpm: 110, volume: 0.6, startOnFirstTap: false },
+
+  // Kontakt (steht im Fußbereich)
+  hostPhone: "+49 151 41208619",
+
+  // Schrift des Stapels. "Bodoni Moda" kommt dem Flyer-Vorbild am nächsten (schmal gestaucht, hoher Kontrast).
+  // Alternativen: "Playfair Display", "Instrument Serif", "Abril Fatface", "Anton", "Unbounded"
+  font: "Bodoni Moda",
+  letterColor: "#FFFFFF",
+  // Rot der Seite (etwas tiefer als im Flyer, damit weißer Text lesbar bleibt). Magenta wäre "#D4007A".
+  pageColor: "#E02419",
+  pageColorLight: "#FF5A4E",
+  // Akzent für Buttons, Pille, Countdown-Zahl und Sticker
+  accent: "#0A0A0A"
+};
+/* ============================ Ende Anpassung ============================ */
+
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const root = document.documentElement;
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const bpm = (CONFIG.music && CONFIG.music.bpm) || 120;
+  root.style.setProperty("--beat", (60 / bpm).toFixed(3) + "s");
+  if (CONFIG.accent) root.style.setProperty("--accent", CONFIG.accent);
+  if (CONFIG.pageColor) root.style.setProperty("--bg", CONFIG.pageColor);
+  if (CONFIG.pageColorLight) root.style.setProperty("--bg-light", CONFIG.pageColorLight);
+  const FONTS = {
+    "Bodoni Moda": { css: "Bodoni+Moda:opsz,wght@6..96,900", weight: 900, cx: 0.8, fallback: '"Bodoni 72", "Didot", Georgia, serif' },
+    "Playfair Display": { css: "Playfair+Display:wght@900", weight: 900, cx: 0.85, fallback: 'Georgia, serif' },
+    "Instrument Serif": { css: "Instrument+Serif", weight: 400, cx: 1, fallback: 'Georgia, serif' },
+    "Abril Fatface": { css: "Abril+Fatface", weight: 400, cx: 0.9, fallback: 'Georgia, serif' },
+    "Anton": { css: "Anton", weight: 400, cx: 1, fallback: 'Impact, sans-serif' },
+    "Unbounded": { css: "Unbounded:wght@900", weight: 900, cx: 0.85, fallback: '"Arial Black", Impact, sans-serif' }
+  };
+  const fontName = FONTS[CONFIG.font] ? CONFIG.font : "Bodoni Moda";
+  const fl = document.createElement("link"); fl.rel = "stylesheet";
+  fl.href = "https://fonts.googleapis.com/css2?family=" + FONTS[fontName].css + "&display=swap";
+  document.head.append(fl);
+  root.style.setProperty("--display", '"' + fontName + '", ' + FONTS[fontName].fallback);
+  root.style.setProperty("--display-weight", String(FONTS[fontName].weight));
+  root.style.setProperty("--cx", String(FONTS[fontName].cx));
+
+  const start = new Date(CONFIG.start);
+  const end = new Date(CONFIG.end);
+  const fmtLong = new Intl.DateTimeFormat("de-DE", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+  const fmtShort = new Intl.DateTimeFormat("de-DE", { day: "numeric", month: "long" });
+  const fmtDeadline = new Intl.DateTimeFormat("de-DE", { day: "numeric", month: "long", year: "numeric" });
+
+  // Buchstaben einzeln: eigene Größe, feste Neigung, periodische Drehung, Tippen dreht sofort
+  let seed = 7;
+  const rnd = () => { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; };
+  function fillLine(el, word, opts) {
+    const o = Object.assign({ tilt: 4, base: 0, sizeMin: 0.9, sizeMax: 1.1, fill: CONFIG.letterColor || "#FFFFFF" }, opts || {});
+    let i = o.base;
+    for (const ch of word) {
+      const s = document.createElement("span"); s.className = "ltr"; s.setAttribute("aria-hidden", "true");
+      const g = document.createElement("i"); g.className = "g"; g.textContent = ch; s.append(g);
+      s.style.setProperty("--fill", o.fill);
+      s.style.setProperty("--r", ((rnd() * 2 - 1) * o.tilt).toFixed(1) + "deg");
+      s.style.setProperty("--sz", (o.sizeMin + rnd() * (o.sizeMax - o.sizeMin)).toFixed(2));
+      s.style.setProperty("--d", (2.4 + rnd() * 1.4).toFixed(2) + "s");
+      s.style.setProperty("--dl", "-" + (rnd() * 3).toFixed(2) + "s");
+      s.style.setProperty("--td", (10 + rnd() * 8).toFixed(1) + "s");        // Abstand zwischen zwei Drehungen
+      s.style.setProperty("--tdl", "-" + (rnd() * 16).toFixed(1) + "s");
+      s.style.setProperty("--tdir", i % 2 ? "-1" : "1");
+      s.style.setProperty("--bdl", (i % 2 ? 60 / bpm / 2 : 0).toFixed(3) + "s");
+      s.style.setProperty("--edl", (0.05 * i).toFixed(2) + "s");
+      s.addEventListener("click", () => { s.classList.remove("spin"); void s.offsetWidth; s.classList.add("spin"); });
+      s.addEventListener("animationend", (ev) => { if (ev.animationName === "spin") s.classList.remove("spin"); });
+      el.append(s); i++;
+    }
+    return i;
+  }
+  // Stapel: jedes Wort eine Zeile, Schriftgröße aus der Zeichenzahl, die letzte Zeile am größten
+  const stack = $("stack"), sticker = $("sticker");
+  const words = CONFIG.headline.trim().split(/\s+/);
+  let idx = 0;
+  words.forEach((w, n) => {
+    const line = document.createElement("div"); line.className = "line";
+    const last = n === words.length - 1;
+    const k = Math.min(last ? 0.62 : 0.5, 1.85 / w.length);
+    line.style.setProperty("--k", k.toFixed(3));
+    line.style.setProperty("--max", last ? "340px" : "220px");
+    idx = fillLine(line, w, { base: idx, tilt: 4, sizeMin: 0.9, sizeMax: 1.1 });
+    stack.append(line);
+  });
+  stack.setAttribute("aria-label", CONFIG.headline);
+  // Zeilen einpassen: nach dem Laden der Schrift messen und bei Überbreite verkleinern
+  const fitLines = () => {
+    const avail = $("hero").clientWidth;
+    for (const line of stack.querySelectorAll(".line")) {
+      line.style.removeProperty("--fit");
+      const w = line.scrollWidth;
+      if (w > avail) line.style.setProperty("--fit", (avail / w * 0.97).toFixed(3));
+    }
+  };
+  fitLines();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitLines);
+  let rt = null; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(fitLines, 120); });
+  if (CONFIG.sticker && CONFIG.sticker.a) {
+    $("stickerA").textContent = CONFIG.sticker.a; $("stickerB").textContent = CONFIG.sticker.b || "";
+    sticker.hidden = false; stack.append(sticker);
+    sticker.style.setProperty("--sticker-top", words.length > 1 ? (100 * (words.length - 1) / words.length - 6) + "%" : "50%");
+  }
+  setTimeout(() => $("hero").classList.remove("enter"), 2500);
+  if (CONFIG.heroImage) { const im = document.createElement("img"); im.src = CONFIG.heroImage; im.alt = ""; $("disc").append(im); $("disc").hidden = false; }
+
+  // Texte
+  $("eyebrow").textContent = CONFIG.eyebrow;
+  document.title = CONFIG.headline;
+  $("tagline").textContent = CONFIG.tagline || "";
+  $("tagline").hidden = !CONFIG.tagline;
+  const wd = new Intl.DateTimeFormat("de-DE", { weekday: "long" }).format(start);
+  const dm = new Intl.DateTimeFormat("de-DE", { day: "2-digit", month: "long", year: "numeric" }).format(start);
+  $("dateA").textContent = wd + " " + dm;
+  $("dateB").textContent = CONFIG.timeLabel;
+  $("venueLine").textContent = CONFIG.venueName + (CONFIG.venueShort ? " · " + CONFIG.venueShort : "");
+  $("intro").textContent = CONFIG.intro || "";
+  $("intro").hidden = !CONFIG.intro;
+  $("whenBig").textContent = fmtLong.format(start);
+  $("whenSub").textContent = CONFIG.timeLabel;
+  $("venueName").textContent = CONFIG.venueName;
+  $("venueAddress").textContent = CONFIG.venueAddress;
+  $("phone").textContent = CONFIG.hostPhone;
+  $("deadline").textContent = "Bitte antworte bis " + fmtDeadline.format(new Date(CONFIG.rsvpDeadline)) + ". Du kannst deine Antwort später noch ändern.";
+  $("demoNote").hidden = Boolean(CONFIG.rsvpEndpoint);
+
+  $("scheduleCard").hidden = !(CONFIG.schedule && CONFIG.schedule.length);
+  $("notesCard").hidden = !(CONFIG.notes && CONFIG.notes.length);
+  const sched = $("schedule");
+  for (const s of CONFIG.schedule || []) {
+    const li = document.createElement("li");
+    const t = document.createElement("time"); t.textContent = s.time;
+    const w = document.createElement("span"); w.textContent = s.what;
+    li.append(t, w); sched.append(li);
+  }
+  const notes = $("notes");
+  for (const n of CONFIG.notes || []) {
+    const d = document.createElement("div");
+    const b = document.createElement("b"); b.textContent = n.title;
+    const s = document.createElement("span"); s.textContent = n.text;
+    d.append(b, s); notes.append(d);
+  }
+
+  // Countdown
+  const days = Math.ceil((start - Date.now()) / 86400000);
+  const cd = $("countdown");
+  if (days > 1) { cd.innerHTML = "Noch <b>" + days + "</b> Tage"; cd.hidden = false; }
+  else if (days === 1) { cd.textContent = "Morgen ist es soweit"; cd.hidden = false; }
+  else if (days === 0) { cd.textContent = "Heute steigt die Party"; cd.hidden = false; }
+
+  // Karten
+  const q = encodeURIComponent(CONFIG.venueName + ", " + CONFIG.venueAddress);
+  $("appleMaps").href = "https://maps.apple.com/?q=" + q;
+  $("googleMaps").href = "https://www.google.com/maps/search/?api=1&query=" + q;
+
+  // Kalender
+  const utc = (d) => d.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
+  const esc = (s) => String(s).replace(/\\/g, "\\\\").replace(/;/g, "\;").replace(/,/g, "\\,").replace(/\n/g, "\\n");
+  const details = (CONFIG.intro || CONFIG.headline) + " " + CONFIG.timeLabel + ". Rückmeldung bitte bis " + fmtDeadline.format(new Date(CONFIG.rsvpDeadline)) + ".";
+  $("gcalBtn").href = "https://calendar.google.com/calendar/render?action=TEMPLATE"
+    + "&text=" + encodeURIComponent(CONFIG.headline)
+    + "&dates=" + utc(start) + "/" + utc(end)
+    + "&details=" + encodeURIComponent(details)
+    + "&location=" + encodeURIComponent(CONFIG.venueName + ", " + CONFIG.venueAddress);
+  // Kalenderdatei liegt fest neben der Seite (einladung.ics), bei Terminänderung mit anpassen.
+
+  // Formular
+  const form = $("form"), done = $("done"), status = $("status");
+  const nameIn = $("name"), msgIn = $("message"), out = $("personsOut");
+  const personsField = $("personsField");
+  let persons = Math.min(CONFIG.maxPersons, Math.max(1, CONFIG.defaultPersons || 1));
+  const render = () => { out.textContent = String(persons); $("minus").disabled = persons <= 1; $("plus").disabled = persons >= CONFIG.maxPersons; };
+  $("minus").addEventListener("click", () => { persons = Math.max(1, persons - 1); render(); });
+  $("plus").addEventListener("click", () => { persons = Math.min(CONFIG.maxPersons, persons + 1); render(); });
+  const attending = () => $("att-yes").checked;
+  const toggle = () => { personsField.hidden = !attending(); };
+  $("att-yes").addEventListener("change", toggle);
+  $("att-no").addEventListener("change", toggle);
+  render(); toggle();
+
+  const KEY = "einladung40.rsvp";
+  const load = () => { try { return JSON.parse(localStorage.getItem(KEY) || "null"); } catch (e) { return null; } };
+  const save = (v) => { try { localStorage.setItem(KEY, JSON.stringify(v)); } catch (e) {} };
+
+  const showDone = (p) => {
+    form.hidden = true; done.hidden = false;
+    const dl = $("doneLetters"); dl.textContent = "";
+    fillLine(dl, p.attending ? "YES!" : "SCHADE", { tilt: 4 });
+    dl.setAttribute("aria-label", p.attending ? "Yes" : "Schade");
+    if (p.attending) {
+      $("doneText").textContent = "Danke, " + p.name + "! Wir sehen uns am " + fmtShort.format(start) + ".";
+      $("doneSub").textContent = "Ich habe euch mit " + p.persons + (p.persons === 1 ? " Person" : " Personen") + " notiert.";
+    } else {
+      $("doneText").textContent = "Danke für deine Nachricht, " + p.name + ".";
+      $("doneSub").textContent = "Wir holen das nach.";
+    }
+  };
+  const saved = load();
+  if (saved && saved.name) {
+    nameIn.value = saved.name; msgIn.value = saved.message || "";
+    if (saved.attending) { $("att-yes").checked = true; persons = Math.min(CONFIG.maxPersons, Math.max(1, saved.persons || 1)); }
+    else { $("att-no").checked = true; }
+    render(); toggle(); showDone(saved);
+  }
+  $("editBtn").addEventListener("click", () => { done.hidden = true; form.hidden = false; nameIn.focus(); });
+
+  async function send(payload) {
+    if (!CONFIG.rsvpEndpoint) { await new Promise((r) => setTimeout(r, 700)); return { ok: true, demo: true }; }
+    // Body als Text: kein CORS-Preflight, Apps Script antwortet mit JSON. Nach 20 Sekunden abbrechen.
+    const ctrl = new AbortController(); const timer = setTimeout(() => ctrl.abort(), 20000);
+    let res;
+    try { res = await fetch(CONFIG.rsvpEndpoint, { method: "POST", body: JSON.stringify(payload), signal: ctrl.signal }); }
+    finally { clearTimeout(timer); }
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const data = await res.json();
+    if (!data.ok) throw new Error(data.error || "Unbekannter Fehler");
+    return data;
+  }
+
+  form.addEventListener("submit", async (ev) => {
+    ev.preventDefault();
+    status.className = "status"; status.textContent = "";
+    const name = nameIn.value.trim();
+    if (!name) { status.className = "status err"; status.textContent = "Bitte trag deinen Namen ein, damit ich weiß, wer antwortet."; nameIn.focus(); return; }
+    const payload = {
+      name, attending: attending(), persons: attending() ? persons : 0,
+      message: msgIn.value.trim(), website: $("website").value,
+      sentAt: new Date().toISOString(), page: location.href
+    };
+    const btn = $("submitBtn"); btn.disabled = true; status.textContent = "Wird gesendet";
+    try {
+      await send(payload);
+      save(payload); showDone(payload);
+      if (payload.attending && !reduced) confetti();
+    } catch (err) {
+      status.className = "status err";
+      status.textContent = "Das hat nicht geklappt. Bitte versuch es gleich noch einmal oder schreib mir direkt.";
+      console.error(err);
+    } finally { btn.disabled = false; if (!status.classList.contains("err")) status.textContent = ""; }
+  });
+
+  // Nummer kopieren
+  $("copyPhone").addEventListener("click", async (ev) => {
+    const btn = ev.currentTarget, txt = CONFIG.hostPhone;
+    try { await navigator.clipboard.writeText(txt); btn.textContent = "Kopiert"; }
+    catch (e) {
+      const r = document.createRange(); r.selectNodeContents($("phone"));
+      const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r); btn.textContent = "Markiert, jetzt kopieren";
+    }
+    setTimeout(() => { btn.textContent = "Nummer kopieren"; }, 2200);
+  });
+
+  // Musik: Buchstaben hüpfen im Takt, solange sie läuft
+  const music = CONFIG.music || {};
+  const audio = $("music"), musicBtn = $("musicBtn"), musicLabel = $("musicLabel");
+  let musicPlaying = false, fadeTimer = null;
+  const fadeTo = (target, ms, then) => {
+    clearInterval(fadeTimer);
+    const from = audio.volume, steps = Math.max(1, Math.round(ms / 50)); let i = 0;
+    fadeTimer = setInterval(() => {
+      i++; audio.volume = Math.max(0, Math.min(1, from + (target - from) * i / steps));
+      if (i >= steps) { clearInterval(fadeTimer); if (then) then(); }
+    }, 50);
+  };
+  const setMusicUI = (on) => {
+    musicBtn.classList.toggle("on", on); musicBtn.setAttribute("aria-pressed", String(on));
+    musicLabel.textContent = on ? "Musik aus" : "Musik an";
+    document.body.classList.toggle("beat", on && !reduced);
+  };
+  async function musicOn() {
+    if (!audio.getAttribute("src")) audio.src = music.src;
+    audio.volume = 0;
+    try { await audio.play(); } catch (e) { musicLabel.textContent = "Tippen für Musik"; return; }
+    musicPlaying = true; setMusicUI(true); fadeTo(music.volume == null ? 0.5 : music.volume, 1500);
+  }
+  function musicOff() { musicPlaying = false; setMusicUI(false); fadeTo(0, 600, () => audio.pause()); }
+  if (music.src) {
+    musicBtn.hidden = false;
+    let lastToggle = 0;
+    musicBtn.addEventListener("click", () => {
+      const now = Date.now(); if (now - lastToggle < 400) return; lastToggle = now;   // Doppel-Klicks abfangen
+      musicPlaying ? musicOff() : musicOn();
+    });
+    if (music.startOnFirstTap) {
+      document.addEventListener("pointerdown", (ev) => { if (!musicBtn.contains(ev.target) && !musicPlaying) musicOn(); }, { once: true });
+    }
+  }
+
+  // Konfetti in Weiß und Schwarz
+  function confetti() {
+    const c = $("confetti"), ctx = c.getContext("2d");
+    const dpr = Math.min(2, window.devicePixelRatio || 1);
+    c.width = innerWidth * dpr; c.height = innerHeight * dpr; ctx.scale(dpr, dpr);
+    const colors = ["#FFFFFF", CONFIG.accent || "#0A0A0A", "#FFFFFF", "#FFD3CF"];
+    const parts = Array.from({ length: 160 }, () => ({
+      x: innerWidth / 2 + (Math.random() - 0.5) * 140, y: innerHeight * 0.55,
+      vx: (Math.random() - 0.5) * 16, vy: -Math.random() * 17 - 6,
+      w: 8 + Math.random() * 8, h: 6 + Math.random() * 6, r: Math.random() * Math.PI, vr: (Math.random() - 0.5) * 0.3,
+      col: colors[Math.floor(Math.random() * colors.length)], round: Math.random() < 0.4
+    }));
+    const t0 = performance.now();
+    (function frame(t) {
+      const el = (t - t0) / 1000;
+      ctx.clearRect(0, 0, innerWidth, innerHeight);
+      for (const p of parts) {
+        p.vy += 0.35; p.vx *= 0.99; p.x += p.vx; p.y += p.vy; p.r += p.vr;
+        ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.r); ctx.globalAlpha = Math.max(0, 1 - el / 3);
+        ctx.fillStyle = p.col; ctx.beginPath();
+        if (p.round) ctx.arc(0, 0, p.w / 2, 0, Math.PI * 2); else ctx.rect(-p.w / 2, -p.h / 2, p.w, p.h);
+        ctx.fill(); ctx.restore();
+      }
+      if (el < 3.2) requestAnimationFrame(frame); else ctx.clearRect(0, 0, innerWidth, innerHeight);
+    })(t0);
+  }
+})();
+</script>
+</body>
+</html>
